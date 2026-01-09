@@ -48,4 +48,3 @@
   - MySQL: 3306
   - PostgreSQL: 5432
 - Practice schema creation without referring to notes
-
