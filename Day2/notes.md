@@ -10,3 +10,5 @@
   - Creating databases
   - Creating tables
   - Updating database and table structure
+### summary
+Day 2 focused on understanding database and table creation using DDL.  
