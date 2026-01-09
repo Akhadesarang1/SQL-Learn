@@ -49,9 +49,3 @@
   - PostgreSQL: 5432
 - Practice schema creation without referring to notes
 
-## Next Day Plan
-- SELECT statement
-- WHERE clause
-- ORDER BY
-- LIMIT and DISTINCT
-- Write at least 25–30 queries
