@@ -1,7 +1,8 @@
 -- task5 Add constraints
 
--- mysql 
 ALTER TABLE products
+
+-- mysql 
 MODIFY COLUMN product_name VARCHAR(200) NOT NULL,
 MODIFY COLUMN price NUMERIC(10,2) NOT NULL CHECK (price > 0),
 MODIFY COLUMN description TEXT NOT NULL,
