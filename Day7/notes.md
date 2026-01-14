@@ -1,0 +1,1 @@
+understood what data normalization is and why splitting data is needed
