@@ -30,21 +30,7 @@
 - Practiced inserting data into tables with relationships.
 - Learned the correct order of insertion to maintain referential integrity.
 
-### 8. Joining Data & Introducing INNER JOIN
-- Learned what JOINs are and why they are used.
-- Introduced to INNER JOIN to combine data from related tables.
 
-### 9. Using INNER JOIN
-- Practiced writing INNER JOIN queries.
-- Learned how to fetch meaningful combined data from multiple tables.
-
-### 10. Combining Multiple JOINs
-- Learned how to join more than two tables in a single query.
-- Understood how table relationships work together in complex queries.
-
-### 11. Data Joining & Filtering
-- Combined JOINs with WHERE conditions.
-- Learned how to filter joined data for precise results.
 
 ## Summary
-Today’s learning focused on understanding relational databases, data normalization, and joining data across multiple tables using INNER JOINs. This forms the foundation for writing efficient and scalable SQL queries.
+Today’s Learned database normalization fundamentals, splitting data into related tables, applying normal forms, creating table relationships, and inserting related data to ensure consistency and integrity.
