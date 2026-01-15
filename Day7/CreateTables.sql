@@ -18,5 +18,5 @@ CREATE TABLE addresses (
 CREATE TABLE cities(
     id INT PRIMARY KEY AUTO_INCREMENT, -- mysql
     id SERIAL PRIMARY KEY , -- postgresql
-    city_name VARCHAR(100) NOT NULL
+    city_name VARCHAR(300) NOT NULL
 );
