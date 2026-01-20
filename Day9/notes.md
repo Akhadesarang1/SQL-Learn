@@ -1,108 +1,60 @@
-# Day 9 – Mastering Foreign Key Constraints
+# Day 9 – Foreign Key Constraints (Practical Learning)
 
-## 1. Why Foreign Keys Matter
+## Key Learnings
 
-Without Foreign Key (FK) constraints, tables are not truly connected—only linked by convention. This leads to:
+### 1. Hidden Problem Without Foreign Keys
 
-* **Orphaned records**: Child rows point to non‑existent parents.
-* **Invalid data**: You can insert references that don’t exist.
-* **No integrity**: The database cannot enforce relationships.
-
-Foreign keys solve this by making relationships a rule, not a suggestion.
+Learned that inserting a value like `address_id = 100` succeeds **even if that address does not exist** when no foreign key constraint is applied. This leads to **invalid and non-optimal data**.
 
 ---
 
-## 2. What Is a Foreign Key?
+### 2. Introduction to Foreign Key Constraints
 
-A **Foreign Key** is a column (or set of columns) in a child table that references the **Primary Key** of a parent table.
+Understood the purpose of **Foreign Key Constraints** and how they enforce relationships between tables.
 
-### Benefits
+Learned key concepts:
 
-* **Referential Integrity**: Keeps relationships consistent.
-* **Automatic Validation**: MySQL blocks invalid inserts, updates, or deletes.
-
----
-
-## 3. Defining a Foreign Key
-
-When you add a FK, you tell MySQL:
-
-> “This value must already exist in the parent table.”
-
-### Example
-
-```sql
-CREATE TABLE orders (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    order_date DATE,
-    amount DECIMAL(8,2),
-    customer_id INT,
-    FOREIGN KEY (customer_id) REFERENCES customers(id)
-);
-```
-
-* **Parent table**: `customers`
-* **Child table**: `orders`
+* **REFERENCES** – links a child table column to a parent table’s primary key
+* **ON DELETE** – defines what happens to child rows when a parent row is deleted
+* **ON UPDATE** – defines what happens when a parent key is updated
 
 ---
 
-## 4. Updating & Removing Foreign Keys
+### 3. ON DELETE Usage
 
-Foreign keys are constraints, so they must be explicitly modified.
+Observed that **ON DELETE** is the most commonly used referential action in real-world databases because deletes can easily create orphan records if not handled properly.
 
-### Drop a Foreign Key
+---
+
+### 4. Hands-on Practice
+
+Performed practical steps to understand foreign key behavior:
+
+* Dropped existing tables
+* Re-created tables with proper **FOREIGN KEY REFERENCES**
+* Inserted related parent and child records
+* Ran queries to validate relationships
+
+Tested deletion using:
 
 ```sql
-ALTER TABLE orders DROP FOREIGN KEY orders_ibfk_1;
-```
-
-(MySQL auto‑generates names if you don’t define one.)
-
-### Add a Foreign Key to an Existing Table
-
-```sql
-ALTER TABLE orders
-ADD CONSTRAINT fk_customer
-FOREIGN KEY (customer_id) REFERENCES customers(id);
+DELETE FROM addresses WHERE id = 2;
 ```
 
 ---
 
-## 5. Foreign Keys in Action (Referential Actions)
+### 5. Tested Referential Actions
 
-Foreign keys define what happens to child rows when a parent row changes.
+Repeated delete operations using different constraints to observe behavior:
 
-| Action               | Behavior                                 |
-| -------------------- | ---------------------------------------- |
-| CASCADE              | Child rows update/delete automatically   |
-| SET NULL             | Child FK becomes NULL                    |
-| RESTRICT / NO ACTION | Prevents parent change if children exist |
-
-### Example
-
-```sql
-FOREIGN KEY (customer_id)
-REFERENCES customers(id)
-ON DELETE CASCADE;
-```
+* **RESTRICT** – prevents deletion if related child records exist
+* **NO ACTION** – same as RESTRICT (default behavior)
+* **CASCADE** – deletes related child records automatically
+* **SET NULL** – sets foreign key column to NULL
+* **SET DEFAULT** – sets foreign key column to default value
 
 ---
 
-## 6. Foreign Keys & MySQL Engine
+## Final Takeaway
 
-* `REFERENCES` is used inside `CREATE TABLE` or `ALTER TABLE`.
-* **InnoDB is required** for FK enforcement.
-* Engines like **MyISAM ignore foreign keys**, even if syntax is valid.
-
----
-
-## Summary Checklist
-
-* Identified problems with loose ID relationships
-* Created tables with FOREIGN KEY constraints
-* Used ON DELETE CASCADE
-* Learned to DROP and ADD constraints using ALTER TABLE
-
----
-
-**Key takeaway:** Foreign keys turn relationships into enforceable rules, keeping your database consistent and reliable.
+Foreign key constraints are essential for maintaining **data integrity**, preventing invalid references, and controlling how related data behaves during updates and deletions.
