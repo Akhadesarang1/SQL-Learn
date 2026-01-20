@@ -1,89 +1,107 @@
-# Day 10 – Database Relationships & Primary Keys
+# Day 10 – Data Relationships & Referential Integrity
 
-## 1. Many-to-Many Relationships & Intermediate Tables (Linking Tables)
-- A **many-to-many (M:N)** relationship exists when multiple records in one table relate to multiple records in another.
-- Cannot be implemented directly in relational databases.
-- Solved using a **linking (junction) table**.
-- The linking table:
-  - Contains **foreign keys** referencing both related tables.
-  - Often uses a **composite primary key**.
-- Example use cases:
-  - Students ↔ Courses
-  - Products ↔ Orders
+## 1. Understanding Data Relationships (Theory)
+
+Revised the theoretical concepts of database relationships:
+
+* **One-to-One (1:1)** – One record relates to one record
+* **One-to-Many (1:N)** – One record relates to many records
+* **Many-to-Many (N:N)** – Many records relate to many records
 
 ---
 
-## 2. Querying The Example Data
-- Used **JOIN queries** to fetch data across related tables.
-- Common joins practiced:
-  - `INNER JOIN` – returns matching records only.
-  - `LEFT JOIN` – returns all records from the left table.
-- Emphasis on:
-  - Joining via foreign keys
-  - Selecting meaningful combined data
+## 2. Practical Database Overview
+
+To gain hands-on understanding, explored a sample database containing multiple related tables:
+
+* Employees
+* Teams
+* Projects
+* Intranet Accounts
+* Buildings
+
+This helped visualize how real-world systems model relationships.
 
 ---
 
-## 3. Practicing JOINs With Filtering
-- Combined **JOINs with WHERE conditions**.
-- Filtering helps:
-  - Narrow results based on conditions
-  - Improve query usefulness and performance
-- Examples:
-  - Filtering by status, category, or user ID
-  - Using conditions on joined tables
+## 3. Initial Table Creation
+
+Started practically by:
+
+* Creating **Employees** table
+* Creating **Intranet Accounts** table
+
+This established a basic relationship setup.
 
 ---
 
-## 4. Experimenting With Referential Integrity
-- Referential integrity ensures **valid relationships** between tables.
-- Enforced using **foreign key constraints**.
-- Key concepts:
-  - Prevents orphan records
-  - Ensures data consistency
-- Actions explored:
-  - `ON DELETE CASCADE`
-  - `ON UPDATE CASCADE`
-  - Restricting invalid inserts or deletes
+## 4. Expanding the Database
+
+* Added 4 more tables to the database
+* Inserted sample data into all tables
+* Observed how tables connect through relationships
 
 ---
 
-## 5. Module Introduction
-- Overview of advanced relational database concepts.
-- Focus areas:
-  - Relationships between tables
-  - Keys and constraints
-  - Real-world database modeling
+## 5. Problems With Many-to-Many (N:N) Relationships
+
+Learned that **N:N relationships cannot be implemented directly** in relational databases.
+
+Issues identified:
+
+* Data redundancy
+* Lack of clarity in relationships
+* Difficult querying and maintenance
 
 ---
 
-## 6. Remember: Primary Keys Don't Have To Be Auto-Incrementing IDs!
-- Primary keys must be:
-  - Unique
-  - Not NULL
-- Auto-increment IDs are **common but not mandatory**.
-- Alternatives:
-  - UUIDs
-  - Email, username, or composite keys (when appropriate)
+## 6. Intermediate (Linking) Tables
+
+Solved the N:N problem by creating an **intermediate table**:
+
+* Combined **Projects** and **Employees** tables
+* Used foreign keys to link both sides
+
+This converted the N:N relationship into two 1:N relationships.
 
 ---
 
-## 7. Primary Keys: When To Use Which Column
-- Choosing the right primary key depends on:
-  - Data stability
-  - Uniqueness
-  - Future scalability
-- Guidelines:
-  - Use **surrogate keys** (IDs) when natural keys may change.
-  - Use **natural keys** when they are guaranteed unique and stable.
-- Composite keys are useful in:
-  - Linking tables
-  - Many-to-many relationships
+## 7. Querying Related Data
+
+Practiced querying relational data using:
+
+* `SELECT`
+* `INNER JOIN`
+* `LEFT JOIN`
+* `AS` (aliases)
+
+Used these queries to fetch meaningful combined data from multiple tables.
 
 ---
 
-## Day 10 Summary
-- Learned how to model many-to-many relationships.
-- Practiced JOINs with real filtering.
-- Understood referential integrity and constraints.
-- Gained clarity on choosing appropriate primary keys.
+## 8. Data Manipulation Practice
+
+Repeated JOIN queries after:
+
+* Updating table data
+* Adding or removing records
+
+Observed how query results change based on table content.
+
+---
+
+## 9. Experimenting With Referential Integrity
+
+Tested how referential integrity rules affect:
+
+* Inserts
+* Updates
+* Deletes
+
+This reinforced the importance of foreign keys in maintaining consistent and reliable data.
+
+---
+
+## Final Takeaway
+
+Understanding relationships, using intermediate tables for N:N mappings, and enforcing referential integrity are essential for designing scalable and real-world relational databases.
