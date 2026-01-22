@@ -12,7 +12,7 @@
             "driver": "MySQL",
             "name": "Mysql",
             "username": "root",
-            "database": "restaurants",
+            "database": "gym",
             "askForPassword": true
         },
         {
@@ -23,7 +23,7 @@
             "askForPassword": true,
             "driver": "PostgreSQL",
             "name": "postgres",
-            "database": "restaurants",
+            "database": "gym",
             "username": "postgres"
         }
     ]
