@@ -15,7 +15,7 @@ When deciding which column(s) to use as a Primary Key:
 - Ensure the key is:
   - Unique
   - NOT NULL
-  - Stable over time
+  - Stable over time 
 
 ---
 
