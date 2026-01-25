@@ -16,7 +16,7 @@
 8. Common Commands & Quick Reference
 9. Troubleshooting & Common Mistakes
 10. Suggested Exercises & Practice Plan
-11. Next Steps & Resources
+11. Next Steps & Resources 
 
 ---
 
