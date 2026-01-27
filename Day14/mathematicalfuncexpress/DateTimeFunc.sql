@@ -5,9 +5,10 @@
 -- SELECT WEEKDAY(last_checkin) + 1, last_checkin
 -- FROM memberships;
 
--- postgreSQL only
+-- MySQL only
 -- SELECT CONVERT(last_checkin, DATE), CONVERT(last_checkin, TIME)
 -- FROM memberships;
 
+-- MySQL only
 SELECT last_checkin::TIMESTAMP::DATE, last_checkin::TIMESTAMP::TIME
 FROM memberships;
