@@ -1,3 +1,3 @@
 EXPLAIN ANALYZE
-SELECT * FROM users
+SELECT * FROM users 
 WHERE salary > 12000;
