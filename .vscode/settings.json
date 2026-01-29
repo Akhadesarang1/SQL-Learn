@@ -12,7 +12,7 @@
             "driver": "MySQL",
             "name": "Mysql",
             "username": "root",
-            "database": "indexes",
+            "database": "my_events",
             "askForPassword": true
         },
         {
@@ -23,7 +23,7 @@
             "askForPassword": true,
             "driver": "PostgreSQL",
             "name": "postgres",
-            "database": "indexes",
+            "database": "my_events",
             "username": "postgres"
         }
     ]
