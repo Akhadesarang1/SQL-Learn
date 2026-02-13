@@ -1,255 +1,443 @@
-# SQL Learning Roadmap — Days 01–06
-
-> Concise, practical, and chronological guide covering the first six days of your SQL learning. Use this README as a study guide, quick reference, and checklist.
-
----
-
-## Table of Contents
-
-1. Overview & How to Use this Guide
-2. Day 01 — SQL Fundamentals & Setup
-3. Day 02 — Data Definition Operations (DDL)
-4. Day 03 — Data Types & Table Practice
-5. Day 04 — ALTER & NULL behavior
-6. Day 05 — Constraints & Table Features
-7. Day 06 — CRUD: DML in Practice
-8. Common Commands & Quick Reference
-9. Troubleshooting & Common Mistakes
-10. Suggested Exercises & Practice Plan
-11. Next Steps & Resources 
+````md
+# SQL Learning Journey — Day 01 to Day 18  
+*A Practical Learner’s Roadmap from Fundamentals to Advanced Database Design*
 
 ---
 
-## 1. Overview & How to Use this Guide
+## Overview
 
-This README condenses your daily notes into a structured study path. Each day has: core concepts, practical tasks you did, important commands/syntax, and revision notes. Use the **Suggested Exercises** section to practice and the **Quick Reference** to refresh syntax before coding.
+This README documents my structured SQL learning journey from **Day 01 through Day 18**, covering foundational concepts, hands-on database practice, and advanced relational database design.  
 
-Study tips:
+The goal of this journey was to move from understanding basic SQL syntax to designing real-world relational databases with proper normalization, constraints, performance optimization, and advanced querying techniques.
 
-* Read a day's section, then re-run the practical commands in a new database instance.
-* Intentionally insert an incorrect value, then fix it with `UPDATE` to learn error handling.
-* Keep a scratch SQL file (e.g., `practice.sql`) per day to track progress.
+This guide is written from a **learner’s perspective**, summarizing concepts learned, practical exercises performed, and key takeaways gained through daily practice.
 
 ---
 
-## 2. Day 01 — SQL Fundamentals & Setup
+## Learning Approach
 
-**Learning goals**
+Throughout this journey I followed a practical-first methodology:
 
-* Understand what SQL is and where to use it.
-* Know the difference between DDL and DML.
-* Set up local environments: MySQL and PostgreSQL.
-* Configure VS Code with SQLTools and connect using CLI tools.
+- Learn the concept.
+- Implement it directly in MySQL and PostgreSQL.
+- Break things intentionally to understand errors.
+- Reinforce learning through real database design.
 
-**Key concepts**
+Focus areas included:
 
-* SQL is declarative — you describe *what* you want returned.
-* DDL (CREATE, ALTER, DROP) defines structure.
-* DML (INSERT, UPDATE, DELETE, SELECT) manipulates data.
-* A *schema* is a logical container for database objects.
-
-**Practical tasks**
-
-* Installed MySQL and PostgreSQL.
-* Connected using command prompt / SQL Shell.
-* Configured SQLTools in VS Code.
-* Created schemas and verified with `SHOW` / system catalogs.
-
-**Important notes**
-
-* Default ports: MySQL `3306`, PostgreSQL `5432`.
-* Keep host, port, username, password, and database handy for connection strings.
+- Real-world database structure
+- Data integrity
+- Query optimization
+- Practical CRUD operations
+- Analytical querying
 
 ---
 
-## 3. Day 02 — Data Definition Operations (DDL)
-
-**Learning goals**
-
-* Create and drop databases and tables.
-* Learn basic table definitions and schema management.
-
-**What you practiced**
-
-* `CREATE DATABASE`, `DROP DATABASE`.
-* `CREATE TABLE` with sensible column types.
-* Altering table structure (intro; deeper coverage in Day 4).
-
-**Quick summary**
-
-* Day 2 focused on the mechanics of creating structure using DDL.
+# Phase 1 — Foundations (Day 01–Day 06)
 
 ---
 
-## 4. Day 03 — Data Types & Table Practice
+## Day 01 — SQL Fundamentals & Environment Setup
 
-**Learning goals**
+### What I Learned
 
-* Understand core SQL data types: text, numeric, date, boolean.
-* Learn storage strategy for file references (store paths, not raw files).
-* Recognize DB-specific differences (ENUM handling, DECIMAL vs FLOAT).
+- What SQL is and how relational databases work.
+- Difference between:
+  - DDL (Data Definition Language)
+  - DML (Data Manipulation Language)
+- SQL is declarative — I describe *what* data I want.
 
-**What you practiced**
+### Practical Work
 
-* Creating tables and adding columns step-by-step.
-* Inserted records and used `SELECT` to verify.
-* Used BOOLEAN values and ENUMs carefully.
+- Installed MySQL and PostgreSQL.
+- Connected via CLI and VS Code SQLTools.
+- Created schemas and verified database setup.
 
-**Key takeaways**
+### Key Takeaways
 
-* Use `DECIMAL` for monetary values to avoid precision issues with `FLOAT`.
-* MySQL supports inline `ENUM`; PostgreSQL requires creating a custom enum type first.
-* Prefer `VARCHAR` or `TEXT` depending on expected length.
-
----
-
-## 5. Day 04 — ALTER & NULL behavior
-
-**Learning goals**
-
-* Modify existing tables using `ALTER`.
-* Understand NULL vs empty value and `NOT NULL` constraint.
-
-**Important differences**
-
-* PostgreSQL: `ALTER TABLE ... ALTER COLUMN col TYPE ...` (follows SQL standard).
-* MySQL: `ALTER TABLE ... MODIFY COLUMN ...` (direct column redefinition).
-
-**Notes**
-
-* NULL represents unknown/missing data. It is **not** equal to `''` (empty string) or `0`.
-* Use `IS NULL` / `IS NOT NULL` in WHERE clauses.
+- Understanding database structure is essential before writing queries.
+- Connection details (host, port, user) are critical for setup.
 
 ---
 
-## 6. Day 05 — Constraints & Table Features
+## Day 02 — Data Definition Language (DDL)
 
-**Learning goals**
+### Topics
 
-* Enforce data integrity using constraints.
-* Work with primary keys, unique constraints, check constraints, foreign keys.
-* Explore generated columns and table creation patterns.
+- Creating and deleting databases.
+- Creating tables and defining columns.
 
-**What you practiced**
-
-* Implemented `CHECK` constraints; observed the error: `Check constraint 'yearly_salary_positive' is violated` when inserting invalid data.
-* Added `PRIMARY KEY` and `UNIQUE` constraints.
-* Recreated tables with `SERIAL` (Postgres) / `AUTO_INCREMENT` (MySQL).
-* Created generated columns like `fullname` from `firstname` + `lastname` (MySQL).
-
-**Constraint notes**
-
-* Primary keys: unique and not null.
-* `FOREIGN KEY` ties related tables together; enforce referential integrity.
-* `CHECK` constraints validate values at insertion/update.
-
----
-
-## 7. Day 06 — CRUD: DML in Practice
-
-**Learning goals**
-
-* Solidify CREATE/READ/UPDATE/DELETE (CRUD) operations across MySQL and PostgreSQL.
-* Use filtering, ordering, limits, and subqueries.
-
-**What you practiced**
-
-* Designed a `product` table with appropriate types and constraints.
-* Inserted single and multiple rows; intentionally added incorrect data to practice updates.
-* Updated rows with `UPDATE ... WHERE ...` using filters.
-* Deleted rows safely using `WHERE` clauses.
-* `SELECT` with column aliases, expressions, `LIMIT`, `DISTINCT`, `ORDER BY`.
-* Wrote subqueries and combined ordering/limiting operations.
-
-**Key takeaways**
-
-* Always filter `UPDATE` and `DELETE` — otherwise you may change/delete all rows.
-* Use `DISTINCT` to remove duplicates in results.
-
----
-
-## 8. Common Commands & Quick Reference
+### Commands Practiced
 
 ```sql
--- DDL
 CREATE DATABASE dbname;
-DROP DATABASE dbname;
-CREATE SCHEMA schemaname;
 CREATE TABLE tablename (...);
-ALTER TABLE tablename ADD COLUMN colname TYPE;
+DROP DATABASE dbname;
+````
 
--- Column types examples
-VARCHAR(255), TEXT, INT, SERIAL (Postgres), INT AUTO_INCREMENT (MySQL),
-DECIMAL(10,2), FLOAT, BOOLEAN, DATE
+### Learning Outcome
 
--- DML
-INSERT INTO table (col1, col2) VALUES (v1, v2);
-INSERT INTO table (col1, col2) VALUES (v1, v2), (v3, v4);
-SELECT col1, col2 FROM table WHERE condition ORDER BY col1 DESC LIMIT 10;
-UPDATE table SET col = value WHERE condition;
-DELETE FROM table WHERE condition;
+* Understood how database structure is defined before inserting data.
 
--- Constraints
-ALTER TABLE table ADD CONSTRAINT constraint_name CHECK (col > 0);
-ALTER TABLE table ADD PRIMARY KEY (id);
+---
 
--- NULL checks
-SELECT * FROM table WHERE col IS NULL;
-SELECT * FROM table WHERE col IS NOT NULL;
+## Day 03 — Data Types & Table Practice
+
+### Concepts
+
+* Core data types:
+
+  * VARCHAR / TEXT
+  * INT
+  * DECIMAL vs FLOAT
+  * BOOLEAN
+  * DATE/TIME
+
+### Practical Learning
+
+* Created tables step-by-step.
+* Inserted and validated records using SELECT.
+* Learned to store file paths instead of files.
+
+### Key Insight
+
+* Use `DECIMAL` for financial values to avoid precision issues.
+
+---
+
+## Day 04 — ALTER Operations & NULL Behavior
+
+### Topics
+
+* Modifying existing tables.
+* Understanding NULL vs empty values.
+
+### Important Differences
+
+* PostgreSQL:
+
+```sql
+ALTER TABLE table ALTER COLUMN col TYPE datatype;
 ```
 
----
+* MySQL:
 
-## 9. Troubleshooting & Common Mistakes
+```sql
+ALTER TABLE table MODIFY COLUMN col datatype;
+```
 
-* **Missing semicolon**: statements must end with `;` in many clients — leads to syntax errors.
-* **Wrong ENUM value**: validate enum values before insert; Postgres requires type creation first.
-* **Using FLOAT for money**: can cause rounding errors — use `DECIMAL`.
-* **Unfiltered UPDATE/DELETE**: always include `WHERE` unless intentional.
-* **Constraint violations**: read the error message (e.g., CHECK failed) and inspect the offending row.
+### Key Learning
 
----
-
-## 10. Suggested Exercises & Practice Plan
-
-Repeat each day’s exercises, increasing complexity.
-
-**Week plan (example):**
-
-* Day A: Recreate Day 1–3 exercises from scratch in a new DB.
-* Day B: Design a mini-schema: `users`, `products`, `orders`, `order_items`.
-
-  * Implement PKs, FKs, UNIQUE, CHECKs.
-  * Seed with sample data and write queries:
-
-    * Top 5 customers by spending
-    * Products never ordered
-    * Orders with total > 1000 (use generated/aggregated columns)
-* Day C: Backup and restore a database using CLI tools.
-* Day D: Write complex SELECTs with joins, aggregates, GROUP BY, HAVING.
-
-**Challenge exercises:**
-
-* Implement soft deletes with a `deleted_at` timestamp and show queries for active rows.
-* Migrate an existing table column type safely with minimal downtime (practice on a copy).
+* NULL represents unknown data, not zero or empty string.
 
 ---
 
-## 11. Next Steps & Resources
+## Day 05 — Constraints & Data Integrity
 
-* Practice **joins**, **aggregations** and **window functions** next.
-* Learn **indexes** and query planning to optimize performance.
-* Explore **transactions** and isolation levels for safe concurrent operations.
-* Try building a small app (e.g., simple inventory or blog) to apply CRUD + schema design.
+### Constraints Practiced
+
+* PRIMARY KEY
+* UNIQUE
+* CHECK
+* FOREIGN KEY
+* NOT NULL
+
+### Hands-on Learning
+
+* Created generated columns.
+* Tested constraint failures and interpreted error messages.
+
+### Insight
+
+Constraints enforce correctness at the database level.
 
 ---
 
-### Final checklist (quick)
+## Day 06 — CRUD Operations (DML)
 
-* [ ] Set up MySQL & PostgreSQL locally
-* [ ] Connect with CLI and VS Code (SQLTools)
-* [ ] Create sample databases and schemas
-* [ ] Implement PKs, FKs, UNIQUE, CHECK
-* [ ] Practice INSERT / UPDATE / DELETE / SELECT with filters
-* [ ] Attempt challenge exercises
+### Practice Areas
 
+* INSERT single and multiple rows.
+* SELECT with filtering and sorting.
+* UPDATE with conditions.
+* DELETE safely using WHERE.
+
+### Key Lessons
+
+* Always include WHERE in UPDATE/DELETE.
+* DISTINCT removes duplicate results.
+* Subqueries add flexibility to filtering.
+
+---
+
+# Phase 2 — Relational Databases & Joins (Day 07–Day 10)
+
+---
+
+## Day 07 — Related Data & Normalization
+
+### Concepts Learned
+
+* Why large single tables cause redundancy.
+* Data normalization (1NF, 2NF, 3NF).
+* Splitting entities into logical tables.
+
+### Practical Work
+
+* Designed normalized schema.
+* Created relationships using PRIMARY and FOREIGN keys.
+
+### Key Insight
+
+Proper design prevents data inconsistency.
+
+---
+
+## Day 08 — SQL Joins & Data Combination
+
+### Types of Joins
+
+* INNER JOIN
+* LEFT JOIN
+* RIGHT JOIN
+* CROSS JOIN
+
+### Learning Outcomes
+
+* Combine multiple tables.
+* Filter joined data.
+* Compare INNER vs LEFT JOIN.
+
+### Additional Concepts
+
+* UNION vs JOIN differences.
+
+---
+
+## Day 09 — Foreign Key Constraints
+
+### Problem Identified
+
+Without foreign keys, invalid references can be inserted.
+
+### Referential Actions Practiced
+
+* RESTRICT / NO ACTION
+* CASCADE
+* SET NULL
+* SET DEFAULT
+
+### Key Learning
+
+Foreign keys maintain relational integrity automatically.
+
+---
+
+## Day 10 — Data Relationships & Referential Integrity
+
+### Relationship Types
+
+* One-to-One
+* One-to-Many
+* Many-to-Many
+
+### Practical Experience
+
+* Created intermediate linking tables.
+* Converted N:N relationships into two 1:N relationships.
+
+### Insight
+
+Link tables are essential for scalable relational design.
+
+---
+
+# Phase 3 — Keys, Aggregation & Advanced Queries (Day 11–Day 15)
+
+---
+
+## Primary Keys & Advanced Relationship Modeling
+
+### Topics
+
+* Natural vs surrogate keys.
+* Composite primary keys.
+* Composite foreign keys.
+* Self-referential relationships.
+
+### Practical Example
+
+* Employee → Manager hierarchy.
+* Junction tables with composite keys.
+
+---
+
+## Day 12 — Aggregations & GROUP BY
+
+### Functions Learned
+
+* COUNT()
+* SUM()
+* AVG()
+* MIN()
+* MAX()
+
+### Key Concepts
+
+* GROUP BY with aggregations.
+* Using aliases for readability.
+* Combining JOIN + GROUP BY.
+
+---
+
+## Day 13 — Advanced Querying & Window Functions
+
+### Focus Areas
+
+* GROUP BY deeper usage.
+* WHERE vs HAVING differences.
+* Multi-table analysis queries.
+
+---
+
+## Day 14 — SQL Functions Practice
+
+### Categories
+
+* Mathematical: CEIL, FLOOR, ROUND.
+* String: CONCAT, LOWER, LENGTH, TRIM.
+* Date/Time: EXTRACT, CAST, CONVERT.
+
+### Outcome
+
+Improved data transformation skills inside SQL queries.
+
+---
+
+## Day 15 — Date Functions & Subqueries
+
+### Topics
+
+* Date calculations and intervals.
+* Pattern matching using LIKE.
+* EXISTS() subqueries.
+* Nested filtering using IN.
+
+### Key Learning
+
+Subqueries enable dynamic and conditional logic.
+
+---
+
+# Phase 4 — Transactions, Performance & Real Database Design (Day 16–Day 18)
+
+---
+
+## Day 16 — Transactions & ACID Principles
+
+### Concepts
+
+* Atomicity
+* Consistency
+* Isolation
+* Durability
+
+### Commands Practiced
+
+```sql
+START TRANSACTION;
+COMMIT;
+ROLLBACK;
+SAVEPOINT;
+```
+
+### Learning Outcome
+
+Transactions ensure safe and reliable operations.
+
+---
+
+## Day 17 — Indexes & Performance Optimization
+
+### What I Learned
+
+* Indexes speed up SELECT queries.
+* Too many indexes reduce write performance.
+
+### Tools Used
+
+```sql
+EXPLAIN ANALYZE
+```
+
+### Observations
+
+* Index Scan vs Sequential Scan differences.
+
+---
+
+## Day 18 — Real Database Design (my_events Project)
+
+### Database Structure
+
+Tables:
+
+* cities
+* locations
+* events
+* users
+* organizers
+* tags
+* events_tags (junction)
+* events_users (junction)
+
+### Skills Applied
+
+* Normalization
+* Relationships
+* Constraints
+* JOIN queries
+* Filtering and aggregations
+
+### Major Outcome
+
+Designed a complete relational database from scratch.
+
+---
+
+# Key Learning Themes Across All Days
+
+* Database design matters more than just writing queries.
+* Constraints protect data integrity.
+* Relationships define system structure.
+* Aggregation and joins unlock analytical power.
+* Indexing improves performance when used strategically.
+* Transactions ensure reliability.
+
+---
+
+# Personal Progress Summary (Learner Perspective)
+
+Through this journey I progressed from:
+
+* Setting up databases and learning basic syntax
+  → to designing normalized schemas with relationships
+  → to writing advanced queries with joins, subqueries, and aggregations
+  → to optimizing performance with indexes and transaction safety.
+
+The final outcome is a strong foundation in SQL and relational database design suitable for real-world backend and data-driven applications.
+
+---
+
+# Next Learning Goals
+
+* Query optimization strategies.
+* Window functions deeper usage.
+* Execution plan analysis.
+* Database scaling and indexing strategies.
+* Applying SQL inside real backend applications.
+
+---
+
+```
+```
