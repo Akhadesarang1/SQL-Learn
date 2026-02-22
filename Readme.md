@@ -29,7 +29,7 @@ Focus areas included:
 - Data integrity
 - Query optimization
 - Practical CRUD operations
-- Analytical querying
+- Analytical querying 
 
 ---
 
